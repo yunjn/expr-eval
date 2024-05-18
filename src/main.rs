@@ -25,13 +25,13 @@ enum AssocType {
 #[derive(Debug, Clone, Copy, PartialEq)]
 enum Token {
     Number(i32),
-    Plus,             // 加
-    Minus,            // 减
-    Multiply,         // 乘
-    Divide,           // 除
-    Power,            // 幂
-    LeftParenthesis,  // 左括号
-    RightParenthesis, // 右括号
+    Plus,
+    Minus,
+    Multiply,
+    Divide,
+    Power,
+    LeftParenthesis,
+    RightParenthesis,
 }
 
 impl Display for Token {
@@ -50,7 +50,6 @@ impl Display for Token {
 }
 
 impl Token {
-    // 判断是不是运算符
     fn is_operator(&self) -> bool {
         match self {
             Token::Plus | Token::Minus | Token::Multiply | Token::Divide | Token::Power => true,
@@ -224,7 +223,7 @@ impl<'a> Expr<'a> {
 
             next_prec += match token.assoc() {
                 AssocType::Left => 1,
-                AssocType::Right => 0,
+                _ => 0,
             };
 
             self.iter.next();
